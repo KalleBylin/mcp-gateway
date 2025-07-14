@@ -69,6 +69,20 @@ system:
       list: '.mcpServers | to_entries | map(.value + {"name": .key})'
       set: .mcpServers[$NAME] = $JSON+{"transport":"stdio"}
       del: del(.mcpServers[$NAME])
+  goose:
+    displayName: Goose
+    source: https://block.github.io/goose/
+    installCheckPaths:
+    - $HOME/.config/goose
+    - $APPDATA\Block\goose\config
+    paths:
+      linux: $HOME/.config/goose/config.yaml
+      darwin: $HOME/.config/goose/config.yaml
+      windows: $APPDATA\Block\goose\config\config.yaml
+    yq:
+      list: '.extensions | to_entries | map(.value + {"name": .key})'
+      set: .extensions[$NAME] = $JSON
+      del: del(.extensions[$NAME])
 project:
   cursor:
     displayname: Cursor
